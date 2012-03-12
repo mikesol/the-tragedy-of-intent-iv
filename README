@@ -1,0 +1,1 @@
+Run python assemble.py > foo.ly and compile foo.ly using LilyPond.
