@@ -2,8 +2,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-The idea is that each class contains its own construction features.
-Along the way, it is passed a list of materials.
+Add classes whose to_material method generates a Material instance
 '''
 
 import random
@@ -216,10 +215,6 @@ class RockLick(Idea) :
     foo.close()
     return Material(music,'coldplay'+nums[idx]+'Left','coldplay'+nums[idx]+'Right',RockLick,15) # dummy length...ugh...
 
-class MiddleChord(Idea) :
-  def to_material(self, l) :
-    pass
-
 class LowHammeredNote(Idea) :
   def to_material(self, l) :
     Q = 70.0
@@ -248,12 +243,6 @@ class LowHammeredNote(Idea) :
     vr = _randString ()
     music = vl + '= {\n  \\clef bass \\cadenzaOn \\ottava #-1  '+out+' \\cadenzaOff \\bar "||" \\ottava #0 \n}\n'+vr+'={\\clef treble \ns16*'+str(n16)+'\n}\n'
     return Material(music, vl, vr, LowHammeredNote, n16 * 1.0 / (4 * Q))
-
-'''
-BUGGY
-but general idea is there.........
-to fix later
-'''
 
 class FailedScale(Idea) :
   def make_scale(self, point, first = False) :
@@ -341,7 +330,6 @@ class Material(object) :
 
 class Piece(object) :
   possibles = [LowHammeredNote, FailedScale, RockLick, Flutter, Press, FlutterAndPress, MiddleOndulation, CMajor, SlowChromaticScale, Ostinato]
-  #possibles = [FailedScale]
   def __init__(self) :
     self.segments = []
     self.material = []
